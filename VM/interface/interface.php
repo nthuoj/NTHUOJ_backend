@@ -103,7 +103,7 @@ require_once("interfaceFunc.php");
 	$errFlag |= recvInfo('sid', $SID);
 	$errFlag |= recvInfo('pid', $PID);
 	$errFlag |= recvInfo('tid', $TID);
-	$errFlag |= recvInfo('codeLanType', $CODE_LAN_TYPE);
+	$errFlag |= recvInfo('codeLanType', $CODE_LANGUAGE_TYPE);
 	$errFlag |= recvInfo('timeLimit', $TIME_LIMIT);
 	$errFlag |= recvInfo('memoryLimit', $MEMORY_LIMIT);
 	$errFlag |= recvInfo('judgeType', $JUDGE_TYPE);
@@ -116,11 +116,11 @@ require_once("interfaceFunc.php");
 		writeLog("==========interface end==========");
 		return;
 	}
-    if(!strcmp($CODE_LAN_TYPE,"C"))
-        $CODE_LAN_TYPE = 'c';
+    if(!strcmp($CODE_LANGUAGE_TYPE,"C"))
+        $CODE_LANGUAGE_TYPE = 'c';
     else
-        $CODE_LAN_TYPE = 'cpp';
-	$userCode = $userCode.$CODE_LAN_TYPE;
+        $CODE_LANGUAGE_TYPE = 'cpp';
+	$userCode = $userCode.$CODE_LANGUAGE_TYPE;
 	
 	writeLog("Recvive information end");
 
@@ -134,7 +134,7 @@ require_once("interfaceFunc.php");
 
 	// Move source code
 	writeLog("Moving source code...");
-	$srcFile = $SOURCE_DIR.$SID.".".$CODE_LAN_TYPE;
+	$srcFile = $SOURCE_DIR.$SID.".".$CODE_LANGUAGE_TYPE;
 	$tarFile = $JUDGE_FILE_DIR.$userCode;
 	$errFlag |= moveFile($srcFile, $tarFile);
 
@@ -159,6 +159,7 @@ require_once("interfaceFunc.php");
 		$tarFile = $JUDGE_FILE_DIR.$speJudgeCode.".".$JUDGE_LAN_TYPE;
 		$errFlag |= moveFile($srcFile, $tarFile);
 	}
+	// Move Paritla judge code
 	if (!strcmp($JUDGE_TYPE, "PARTIAL")){
 		writeLog("Moving partial judge code...");
 		$srcFile = $PAR_JUDGE_DIR.$PID.".".$JUDGE_LAN_TYPE;
@@ -169,7 +170,6 @@ require_once("interfaceFunc.php");
 	if($errFlag){
 		judgeError();
 		writeLog("==========interface end==========");
-		return;
 		return;
 	}
 
@@ -195,15 +195,15 @@ require_once("interfaceFunc.php");
 		if($DEBUG_MODE) echo "<pre>".shell_exec("cat $JUDGE_CONFIG_FILE")."</pre>";
 	}
 
-	$cmd = $JUDGE_EXE." ".$codePath." ".$CODE_LAN_TYPE." ".$CASE_NUMBER." ".$testdataDir." ".$testdataDir." ".$JUDGE_TYPE;
+	$cmd = $JUDGE_EXE." ".$codePath." ".$CODE_LANGUAGE_TYPE." ".$CASE_NUMBER." ".$testdataDir." ".$testdataDir." ".$JUDGE_TYPE;
 
-	// Check special judge or not
+	// Check special/parital judge or not
 	if (!strcmp($JUDGE_TYPE, "SPECIAL")){
-		$speJudgeCodePath = $JUDGE_FILE_DIR.$speJudgeCode.".".$JUDGE_LAN_TYPE;
+		$speJudgeCodePath = $JUDGE_FILE_DIR.$speJudgeCode.$JUDGE_LAN_TYPE;
 		$cmd = $cmd." ".$JUDGE_TYPE." ".$speJudgeCodePath;
 	}
 	else if (!strcmp($JUDGE_TYPE, "PARTIAL")){
-		$parJudgeCodePath = $JUDGE_FILE_DIR.$parJudgeCode.".".$JUDGE_LAN_TYPE;
+		$parJudgeCodePath = $JUDGE_FILE_DIR.$parJudgeCode.$JUDGE_LAN_TYPE;
 		$cmd = $cmd." ".$JUDGE_TYPE." ".$parJudgeCodePath;
 	}
 

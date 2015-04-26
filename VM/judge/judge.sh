@@ -263,11 +263,11 @@ cd $OUTPUT_TMP_DIR
 writeSystemLog "Compile submit code to object file"
 if [ $CODE_LAN_TYPE = "c" ]; then
 	writeSystemLog "Compile as c"
-	gcc -c $C_COMPILE_ARG $CODE_PATH  -o $EXE_O_FILE 2> $ERR_MSG
+	gcc $CODE_PATH -c $C_COMPILE_ARG -o $EXE_O_FILE 2> $ERR_MSG
 
 elif [ $CODE_LAN_TYPE = "cpp" ]; then
 	writeSystemLog "Compile as cpp"
-	g++ -c $CPP_COMPILE_ARG $CODE_PATH -o $EXE_O_FILE 2> $ERR_MSG
+	g++ $CODE_PATH -c $CPP_COMPILE_ARG -o $EXE_O_FILE 2> $ERR_MSG
 
 else
 	writeSystemLog "UNSUPPORTED LANGUAGE TYPE" $CODE_LAN_TYPE
@@ -290,17 +290,17 @@ OBJECT_FILES=${EXE_O_FILE}
 # Compile partial judge code to object file and combine to object_files 
 if [ "$JUDGE_TYPE" == "PARTIAL" ]; then
 	writeSystemLog "Compile partial judge code"
-	if [ $CODE_LAN_TYPE = "c" ]; then
+	if [ $PAR_JUDGE_LAN_TYPE = "c" ]; then
 		writeSystemLog "Compile as c"
-		if [ ! -f $PAR_JUDGE_PATH.c ]; then
+		if [ ! -f $PAR_JUDGE_PATH ]; then
 			writeLocalLog "COMPILE_ERROR"
 			writeSystemLog "COMPILE_ERROR"
 			getResult
 			cleanTmpFile
 			exit 3
 		fi
-		gcc -c $C_COMPILE_ARG $PAR_JUDGE_PATH -o $PAR_JUDGE_O_FILE 2> $ERR_MSG
-	elif [ $CODE_LAN_TYPE = "cpp" ]; then
+		gcc $PAR_JUDGE_PATH -c $C_COMPILE_ARG -o $PAR_JUDGE_O_FILE 2> $ERR_MSG
+	elif [ $PAR_JUDGE_LAN_TYPE = "cpp" ]; then
 		writeSystemLog "Compile as cpp"
 		if [ ! -f $PAR_JUDGE_PATH ]; then
 			writeLocalLog "COMPILE_ERROR"
@@ -309,7 +309,7 @@ if [ "$JUDGE_TYPE" == "PARTIAL" ]; then
 			cleanTmpFile
 			exit 3
 		fi
-		g++ -c $CPP_COMPILE_ARG $PAR_JUDGE_PATH -o $PAR_JUDGE_O_FILE 2> $ERR_MSG
+		g++ $PAR_JUDGE_PATH -c $CPP_COMPILE_ARG -o $PAR_JUDGE_O_FILE 2> $ERR_MSG
 	else
 		writeSystemLog "UNSUPPORTED LANGUAGE TYPE" $CODE_LAN_TYPE
 		getResult
@@ -333,11 +333,11 @@ fi
 # Compile object files
 if [ $CODE_LAN_TYPE = "c" ]; then
 	writeSystemLog "Compile as c"
-	gcc $C_COMPILE_ARG $OBJECT_FILES -o $EXE_FILE 2> $ERR_MSG
+	gcc $OBJECT_FILES $C_COMPILE_ARG -o $EXE_FILE 2> $ERR_MSG
 
 elif [ $CODE_LAN_TYPE = "cpp" ]; then
 	writeSystemLog "Compile as cpp"
-	g++ $CPP_COMPILE_ARG $OBJECT_FILES -o $EXE_FILE 2> $ERR_MSG
+	g++ $OBJECT_FILES $CPP_COMPILE_ARG -o $EXE_FILE 2> $ERR_MSG
 
 else
 	writeSystemLog "UNSUPPORTED LANGUAGE TYPE" $CODE_LAN_TYPE
@@ -359,7 +359,7 @@ fi
 
 # Restricted function
 if [ $CODE_LAN_TYPE = "c" ]; then
-	gcc -ansi -c $CODE_PATH -o $EXE_O_FILE
+	gcc -c $CODE_PATH -o $EXE_O_FILE
 
 elif [ $CODE_LAN_TYPE = "cpp" ]; then
 	g++ -c $CODE_PATH -o $EXE_O_FILE

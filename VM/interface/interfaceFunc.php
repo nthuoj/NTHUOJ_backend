@@ -238,7 +238,7 @@ function judgeError(){
 	global $DEBUG_MODE;
 	global $JUDGE_FILE_DIR;
 	if($DEBUG_MODE) echo "some error occured.<br>";
-	$verdict[] = "Judge Error";
+	$verdict[] = "JE";
 	$runTime[] = 0;
 	$memoryAmt[] = -1;
 	$errMsg[] = "null";

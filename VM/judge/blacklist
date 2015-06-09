@@ -34,3 +34,7 @@ execle
 execve
 execlp
 execvp
+asm
+__asm__
+__asm
+asm__

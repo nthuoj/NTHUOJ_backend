@@ -1,7 +1,7 @@
 <?php
-	session_start();
+	
 //	require_once("lib/database_tools.php");
-	require_once([where you put dispatcherFunction file]);
+	require_once("where U put dispatcherFunction.php");
 	$con = get_database_object();
 	
 	writeLog("updater start");
@@ -56,7 +56,7 @@
 			$status = "JE";
 			break;
 		case "RF":
-			$statue = "RF";
+			$status = "RF";
 			break;
 		default:
 			if ($ac == $tidNum)
@@ -67,7 +67,7 @@
 	}
 	if((!strcmp($status, "AC"))||(!strcmp($status, "NA"))){
 		while($i < $verdictNum){
-			$sql = "UPDATE problem_submissiondetail SET verdict = '".$verdict[$i]."', cpu = ".$runTime[$i].", memory = ".$memoryAmt[$i]." WHERE sid_id = ".$sid." AND tid_id = ".$tid[$i];
+			$sql = "insert into problem_submissiondetail (verdict, cpu, memory, sid_id, tid_id) value('".$verdict[$i]."',".$runTime[$i].",".$memoryAmt[$i].",".$sid.",".$tid[$i].")";
 			writeLog($sql);
 			echo $sql."\n";
 			mysql_query($sql) or die(mysql_error());
@@ -77,5 +77,6 @@
 	writeLog("update submission table");
 
 	$sql = "UPDATE problem_submission SET status = '".$status."', error_msg = '".$err[0]."'  WHERE id = ".$sid;
-	mysql_query($sql) or die(mysql_error());
+	echo "sql = ".$sql."\n";
+    mysql_query($sql) or die(mysql_error());
 ?>

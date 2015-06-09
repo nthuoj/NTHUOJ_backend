@@ -5,16 +5,13 @@ This process continuously checks whether there exist unjudged submissions.
 If there's unjudged submissions, start 'submit_curl.php' process to send it to a available judge VM.
 **************************/
 
-session_start();
 
-//require_once("/var/www/lib/database_tools.php");
 require_once("dispatcherFunction.php");
 
 
 writeLog("================================");
 writeLog("================================");
-$cmd = "chmod 666 ../log/dispatcher.log";
-shell_exec($cmd);
+
 $machine = getMachine();
 if($machine!=null)
 	initMachine($machine);
@@ -42,7 +39,6 @@ while(1)
 		$judge_source = $problemRow['judge_source'];
 		$outside_web = $problemRow['judge_type']; 
 		$codeLanType = $sidRow['language'];
-		//getJudgeInfo($pid, $sid);
 		
 		if($judge_source == "LOCAL")
 		{	

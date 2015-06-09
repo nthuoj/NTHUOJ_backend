@@ -4,7 +4,7 @@ dispatcherFunction.php
 This php provides dispatcher related functions.
 Mainly for 'dispatcher.php', 'submit_curl.php' and 'resultUpdater.php'
 ************************/
-require_once(dirname(__FILE__)."/lib/database_tools.php");
+require_once(dirname(__FILE__)."/../lib/database_tools.php");
 
 $machineStatusDir="machineStatus/";
 $logFilePath="../log/dispatcher.log";

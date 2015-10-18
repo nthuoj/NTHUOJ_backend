@@ -1,2 +1,1 @@
-NTHUOJ_backend
-==============
+python code is in the ojbackend directory

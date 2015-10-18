@@ -1,2 +1,0 @@
-1. execute install.py to set up machine.config and ojdatase.config
-2. execute dispatcher.py as daemon and it will check if there are new submissions need to be judged

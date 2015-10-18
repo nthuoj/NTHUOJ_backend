@@ -1,0 +1,2 @@
+1. execute install.py to set up machine.config and ojdatase.config
+2. execute dispatcher.py as daemon

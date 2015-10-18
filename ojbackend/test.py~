@@ -1,0 +1,13 @@
+import logging
+
+with open("machineStatusDir/machineStatus.config",'r+') as f:
+    for machine in f:
+        #print machine.split()[1]
+        if(machine.split()[1] == '0'):
+                #print "HEY"
+                machineName = machine.split()[0]
+                machinePosition = machine.find(machineName)
+                #print machinePosition
+                f.seek(machinePosition+len(machineName), 0)
+                f.write('1')
+                break

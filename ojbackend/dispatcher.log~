@@ -1,0 +1,25 @@
+2015-10-09 22:27:04,177 ==========Dispatcher Started==========
+2015-10-09 22:27:04,182 getMachine Success
+2015-10-09 22:27:04,182 connect to database
+2015-10-09 22:27:04,193 sidQuery Success!
+2015-10-09 22:27:04,193 sid = 10, pid = 2
+2015-10-09 22:27:04,193 pidQuery Success!
+2015-10-09 22:27:04,193 judgeSource = LOCAL, judgeType = LOCAL_NORMAL, judgeLanguage = CPP
+2015-10-09 22:27:04,193 get idleMachine
+2015-10-09 22:27:05,194 idleMachine = judge1
+2015-10-09 22:27:05,227 get judgeURL = 127.0.0.1/interface.py
+2015-10-09 22:29:21,094 ==========Dispatcher Started========== ::
+2015-10-09 22:29:21,100 getMachine Success ::
+2015-10-09 22:29:21,100 connect to database ::
+2015-10-09 22:29:48,812 ::==========Dispatcher Started==========
+2015-10-09 22:29:48,817 ::getMachine Success
+2015-10-09 22:29:48,817 ::connect to database
+2015-10-09 22:31:37,054 ::==========Dispatcher Started==========
+2015-10-09 22:31:37,060 ::getMachine Success
+2015-10-09 22:31:37,060 ::connect to database
+2015-10-09 22:32:51,215 ::==========Dispatcher Started==========
+2015-10-09 22:32:51,219 ::getMachine Success
+2015-10-09 22:32:51,219 ::connect to database
+2015-10-09 22:33:16,031 ::==========Dispatcher Started==========
+2015-10-09 22:33:16,038 ::getMachine Success
+2015-10-09 22:33:16,038 ::connect to database

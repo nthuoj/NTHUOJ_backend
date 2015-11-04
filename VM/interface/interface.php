@@ -180,7 +180,7 @@ require_once("interfaceFunc.php");
 			$srcFile = $PAR_JUDGE_DIR.$PID.".c";
 		else
 			$srcFile = $PAR_JUDGE_DIR.$PID.".cpp";
-		$tarFile = $JUDGE_FILE_DIR.$parJudgeCode.$JUDGE_LAN_TYPE;
+		$tarFile = $JUDGE_FILE_DIR.$parJudgeCode.$CODE_LAN_TYPE;
 		$errFlag |= moveFile($srcFile, $tarFile);
 		$srcFile = $PAR_JUDGE_DIR.$PID.".h";
 		$tarFile = $JUDGE_FILE_DIR."function.h";
@@ -224,7 +224,7 @@ require_once("interfaceFunc.php");
 		$cmd = $cmd." ".$JUDGE_LAN_TYPE." ".$speJudgeCodePath;
 	}
 	else if (!strcmp($JUDGE_TYPE, "PARTIAL")){
-		$parJudgeCodePath = $JUDGE_FILE_DIR.$parJudgeCode.$JUDGE_LAN_TYPE;
+		$parJudgeCodePath = $JUDGE_FILE_DIR.$parJudgeCode.$CODE_LAN_TYPE;
 		$cmd = $cmd." ".$JUDGE_LAN_TYPE." ".$parJudgeCodePath;
 	}
 

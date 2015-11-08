@@ -1,6 +1,6 @@
 """
 	dispatcherFunc.py
-	This file provides related functions for dispatcher.py.	
+	This file provides related functions for dispatcher.php.	
 """
 from bash import bash
 import MySQLdb
@@ -19,6 +19,8 @@ def getMachine():
         except:
             print "encounter troubles when opening machineInfo.config"
             return None
+
+
 def initMachine(machineInfo):
     #create a dir and a file for machineStatus
     #0 means availabe, 1 means occupied
@@ -31,6 +33,8 @@ def initMachine(machineInfo):
     except:
         print "encounter troubles when rm machineStatusDir or mkdir machineStatusDir"
         return None
+
+
 def getIdleMachine():
     #to get the machine which is available for judging
     machinePosition = 0
@@ -49,6 +53,8 @@ def getIdleMachine():
             return None
     except:
         return None
+
+
 def getdbInfo():
     with open("ojdatabase.config",'r') as f:
         try:
@@ -65,6 +71,8 @@ def getdbInfo():
             print "Log dbInfo Error\nPlease check ojdatabase.config"
             return None, None, None, None
     return dbIP, dbUser, dbPasswd, dbName
+
+
 def connectDB(dbIP, dbUser, dbPasswd, dbName):
     try:
         DB = MySQLdb.connect(host = dbIP, user = dbUser, passwd = dbPasswd, db = dbName)
@@ -73,4 +81,3 @@ def connectDB(dbIP, dbUser, dbPasswd, dbName):
     except:
         print "connect DB error\n"
         return None
-

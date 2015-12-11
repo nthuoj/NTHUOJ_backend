@@ -49,11 +49,8 @@ while True:
     cur.execute("USE nthuoj;")
     cur.execute(submissionStat)
     sidQuery = cur.fetchone()
-    sid = 1
-    pid = 2
-    judgeLanguage = 'cpp'
-    judgeURL = 'judgeURL' 
-    if sidQuery != None:
+    
+    while sidQuery != None:
         sid = sidQuery[0]
         pid = sidQuery[1]
         logging.info('sidQuery Success!')
@@ -103,4 +100,7 @@ while True:
                 pclose(handle)
             else :
                 logging.info('Send to other judge ERROR(No Judge)')
+
+        sidQuery = cur.fetchone()
     time.sleep(1)
+

@@ -1,6 +1,6 @@
 """
 	dispatcherFunc.py
-	This file provides related functions for dispatcher.php.	
+	This file provides related functions for dispatcher.py.	
 """
 from bash import bash
 import MySQLdb

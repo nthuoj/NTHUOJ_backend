@@ -30,10 +30,9 @@ if dbIP == None or dbUser == None or dbPasswd == None or dbName == None:
     logging.info('==========Dispatcher Finished==========')
     exit(0)
 logging.info('connect to database')
-
+DB = connectDB(dbIP, dbUser, dbPasswd, dbName)
 while True:
    
-    DB = connectDB(dbIP, dbUser, dbPasswd, dbName)
     if DB == None:
         logging.info('connect database error')
         logging.info('Please check the settings in ojdatabase.config')

@@ -1,7 +1,7 @@
 <?php
 	
 //	require_once("lib/database_tools.php");
-	require_once("where U put dispatcherFunction.php");
+	require_once("dispatcherFunction.php");
 	$con = get_database_object();
 	
 	writeLog("updater start");

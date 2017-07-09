@@ -4,18 +4,20 @@ dispatcherFunction.php
 This php provides dispatcher related functions.
 Mainly for 'dispatcher.php', 'submit_curl.php' and 'resultUpdater.php'
 ************************/
-require_once(dirname(__FILE__)."/../lib/database_tools.php");
+require_once(dirname(__FILE__)."/lib/database_tools.php");
 
 $machineStatusDir="machineStatus/";
-$logFilePath="../log/dispatcher.log";
+$logFilePath="log/dispatcher.log";
+$machineConfigPath="machine.config";
 
 /************************
 This function load information from machine.config
 *************************/
 function getMachine()
 {
+	global $machineConfigPath;
 	//load machine information from machine.config
-	$handle = fopen("machine.config", "r");
+	$handle = fopen($machineConfigPath, "r");
 	if($handle)
 	{
 		$i=0;
@@ -115,6 +117,7 @@ function getSubmissionInfo($pid, $sid)
         $pidRow = mysql_fetch_array($pidRs);
         $judge_type = $pidRow['judge_type'];
         $judge_language = $pidRow['judge_language'];
+	if($judge_type == "LOCAL_NORMAL") $judge_type = "NORMAL";
 	echo "judge_type ".$judge_type."\n";
 	echo "judge_language ".$judge_language."\n"; 
 
